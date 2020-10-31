@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,6 +44,17 @@ namespace Help_Listas_Linq.ListaJoin
             }
         }
 
+        // Retornar lista com nome dos itens com estoque zerado
+        public IEnumerable<string> ItemsEstoqueZerado()
+        {
+            return from estoque in Estoque
+                   join item in Items
+                   on estoque.ItemId equals item.Id
+                   where estoque.Quantidade < 1
+                   select item.Name;
+        }
+
+
         // Retornar lista com items e suas quantidades
         public IEnumerable<dynamic> EstoqueItems()
         {
@@ -55,28 +67,48 @@ namespace Help_Listas_Linq.ListaJoin
 
 
         // Retornar soma do valor total dos itens no estoque
-        public decimal ValorTotalItemsEstoque2()
+        public decimal ValorTotalItemsEstoque()
         {
             return (from estoque in Estoque
                     join item in Items
                     on estoque.ItemId equals item.Id
                     where estoque.Quantidade > 0
                     select estoque.Quantidade * item.Price)
-                    .Aggregate((acc, x) => acc + x);
+                    .Sum();
         }
 
 
-
-
-        // Retornar lista com nome dos itens com estoque zerado
-        public IEnumerable<string> ItemsEstoqueZerado()
+        // Retornar a média de valores total dos itens no estoque
+        public decimal MediaValoresItens()
         {
-            return from estoque in Estoque
-                   join item in Items
-                   on estoque.ItemId equals item.Id
-                   where estoque.Quantidade < 1
-                   select item.Name;
+            int qtd = (from estoque in Estoque
+                       join item in Items
+                       on estoque.ItemId equals item.Id
+                       select estoque.Quantidade).Sum();
+
+            decimal totalPrice = (from estoque in Estoque
+                                  join item in Items
+                                  on estoque.ItemId equals item.Id
+                                  select item.Price * estoque.Quantidade).Sum();
+
+            return totalPrice / qtd;
+        }
+
+        public decimal MediaValoresItens2()
+        {
+            return (from estoque in Estoque
+                    join item in Items
+                    on estoque.ItemId equals item.Id
+                    select item.Price * estoque.Quantidade).Sum()
+                    /
+                    (from estoque in Estoque
+                     join item in Items
+                     on estoque.ItemId equals item.Id
+                     select estoque.Quantidade).Sum();
+
 
         }
+
+
     }
 }

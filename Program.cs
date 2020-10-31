@@ -11,16 +11,16 @@ namespace Help_Listas_Linq
         {
             var lista = new Exemplos();
             bool exist = lista.ExisteItemMesmoNome();
-            Console.WriteLine(exist);
+            //Console.WriteLine(exist);
 
             bool iguais = new VerificaCpf().TodosOsDigitosSaoIguais("11111111112");
-            Console.WriteLine(iguais);
+            //Console.WriteLine(iguais);
 
             var listaJoin = new ExemplosJoin();
             var estoqueItens = listaJoin.EstoqueItems();
-            Console.WriteLine(string.Join(", ", estoqueItens));
+            //Console.WriteLine(string.Join(", ", estoqueItens));
 
-            Console.WriteLine(listaJoin.ValorTotalItemsEstoque2());
+            Console.WriteLine(listaJoin.MediaValoresItens2());
 
         }
     }
