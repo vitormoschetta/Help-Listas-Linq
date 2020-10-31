@@ -10,8 +10,8 @@ namespace Help_Listas_Linq
         static void Main(string[] args)
         {
             var lista = new Exemplos();
-            bool exist = lista.ExisteItemMesmoNome();
-            //Console.WriteLine(exist);
+            bool exist = lista.ItemsIniciamMestaLetra2();
+            Console.WriteLine(exist);
 
             bool iguais = new VerificaCpf().TodosOsDigitosSaoIguais("11111111112");
             //Console.WriteLine(iguais);
@@ -20,7 +20,7 @@ namespace Help_Listas_Linq
             var estoqueItens = listaJoin.EstoqueItems();
             //Console.WriteLine(string.Join(", ", estoqueItens));
 
-            Console.WriteLine(listaJoin.MediaValoresItens2());
+            //Console.WriteLine(listaJoin.MediaValoresItens2());
 
         }
     }
