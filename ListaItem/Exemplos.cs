@@ -93,12 +93,8 @@ namespace Help_Listas_Linq.ListaItem
 
         // Retorna verdadeiro ou falso se todos os produtos com estoque zerado possuem o preço 
         // menor que R$ 50,00
-        // Duas formas:
         public bool ItemsIniciamMestaLetra2() => Lista
                                                     .Where(x => x.Quantity < 1)
                                                     .All(x => x.Price < 50);
-        public bool ItemsIniciamMestaLetra3() => Lista
-                                                    .Where(x => x.Quantity < 1 && x.Price < 50)
-                                                    .Any();
     }
 }
