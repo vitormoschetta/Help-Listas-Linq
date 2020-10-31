@@ -1,5 +1,6 @@
 ﻿using System;
 using Help_Listas_Linq.ListaItem;
+using Help_Listas_Linq.ListaJoin;
 using Help_Listas_Linq.StringArray;
 
 namespace Help_Listas_Linq
@@ -14,6 +15,12 @@ namespace Help_Listas_Linq
 
             bool iguais = new VerificaCpf().TodosOsDigitosSaoIguais("11111111112");
             Console.WriteLine(iguais);
+
+            var listaJoin = new ExemplosJoin();
+            var estoqueItens = listaJoin.EstoqueItems();
+            Console.WriteLine(string.Join(", ", estoqueItens));
+
+            Console.WriteLine(listaJoin.ValorTotalItemsEstoque2());
 
         }
     }
